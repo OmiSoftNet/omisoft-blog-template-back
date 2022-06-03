@@ -1,0 +1,5 @@
+export enum STATUS_TYPES_ENUM {
+  PUBLISHED = "PUBLISHED",
+  DRAFT = "DRAFT",
+  ARCHIVED = "ARCHIVED",
+}

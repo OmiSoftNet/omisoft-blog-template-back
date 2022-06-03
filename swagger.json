@@ -1,0 +1,1082 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "BluePrints",
+    "description": "Tests for QA and tech developers"
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "servers": [
+    {
+      "url": "http://localhost:5050/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Emails"
+    },
+    {
+      "name": "Posts"
+    },
+    {
+      "name": "Users"
+    }
+  ],
+  "paths": {
+    "/auth/register/": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User registration",
+        "requestBody": {
+          "description": "User registration",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/definitions/Auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/AuthResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failure. Probably, user already exists"
+          }
+        }
+      }
+    },
+    "/auth/login/": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Admin login",
+        "requestBody": {
+          "description": "Admin login",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/definitions/Auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/AuthResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failure. User credentials are incorrect"
+          }
+        }
+      }
+    },
+    "/auth/admin-register/": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Admin registration",
+        "requestBody": {
+          "description": "Admin registration",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/definitions/Auth"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/AuthResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failure. Probably, user already exists"
+          }
+        }
+      }
+    },
+    "/auth/reset-password/": {
+      "put": {
+        "tags": ["Auth"],
+        "summary": "Reset user password",
+        "requestBody": {
+          "description": "Reset user password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "newPassword": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/email/": {
+      "get": {
+        "tags": ["Emails"],
+        "summary": "Get list of emails",
+        "description": "Get list of emails",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Pagination limit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Next page",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Emails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/email/create/": {
+      "post": {
+        "tags": ["Emails"],
+        "summary": "Create email",
+        "requestBody": {
+          "description": "Create email",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email"],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Email"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all users",
+        "description": "Get all users",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Pagination limit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Next page",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/AllUsers"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/admin/": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get admin",
+        "description": "Get admin",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Users"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/create/": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create User",
+        "requestBody": {
+          "description": "Create User",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/definitions/Auth"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/moderator-create/": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create Moderator",
+        "requestBody": {
+          "description": "Create Moderator",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email, password"],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Users"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/users/{id}/": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get user by id",
+        "description": "Get user by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "user's id"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Users"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "user's id"
+          }
+        ],
+        "requestBody": {
+          "description": "Update user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Users"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/delete/{id}/": {
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete user",
+        "description": "Delete user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "user's id"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Users"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/delete-admin/{id}/": {
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete admin",
+        "description": "Delete admin",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "admin's id"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Users"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/users/reset/": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Reset user password by email",
+        "requestBody": {
+          "description": "Reset user password by email",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Users"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/": {
+      "get": {
+        "tags": ["Posts"],
+        "summary": "Get all posts",
+        "description": "Get all posts",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Pagination limit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Next page",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/AllPosts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/url/": {
+      "get": {
+        "tags": ["Posts"],
+        "summary": "Get posts url",
+        "description": "Get posts url",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/PostsUrl"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/create/": {
+      "post": {
+        "tags": ["Posts"],
+        "summary": "Create Post",
+        "requestBody": {
+          "description": "Create Post",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title"],
+                "properties": {
+                  "imageUrl": {
+                    "type": "string"
+                  },
+                  "imageAlt": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "shortDescription": {
+                    "type": "string"
+                  },
+                  "seoTitle": {
+                    "type": "string"
+                  },
+                  "seoDesctiption": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "topic": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Posts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/{url}/": {
+      "get": {
+        "tags": ["Posts"],
+        "summary": "Get post by url",
+        "description": "Get post by url",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "url",
+            "required": true,
+            "type": "string",
+            "description": "post's url"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Posts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/update/{id}/": {
+      "put": {
+        "tags": ["Posts"],
+        "summary": "Update post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "post's id"
+          }
+        ],
+        "requestBody": {
+          "description": "Update post",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title, imageUrl, imageAlt, shortDescription, seoTitle, seoDesctiption, topic, tags"
+                ],
+                "properties": {
+                  "imageUrl": {
+                    "type": "string"
+                  },
+                  "imageAlt": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "shortDescription": {
+                    "type": "string"
+                  },
+                  "seoTitle": {
+                    "type": "string"
+                  },
+                  "seoDesctiption": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "topic": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Posts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/delete/{id}/": {
+      "delete": {
+        "tags": ["Posts"],
+        "summary": "Delete post",
+        "description": "Delete post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "post's id"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/definitions/Posts"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "Auth": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "AuthResult": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/definitions/User"
+          },
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          }
+        }
+      },
+
+      "Email": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "Emails": {
+        "type": "object",
+        "properties": {
+          "docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/definitions/Email"
+            }
+          },
+          "totalDocs": {
+            "type": "number"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "pagingCounter": {
+            "type": "number"
+          },
+          "hasPrevPage": {
+            "type": "boolean"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          },
+          "prevPage": {
+            "type": "number"
+          },
+          "nextPage": {
+            "type": "number"
+          }
+        }
+      },
+      "Users": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "role": {
+            "type": "array"
+          }
+        }
+      },
+      "AllUsers": {
+        "type": "object",
+        "properties": {
+          "docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/definitions/Users"
+            }
+          },
+          "totalDocs": {
+            "type": "number"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "pagingCounter": {
+            "type": "number"
+          },
+          "hasPrevPage": {
+            "type": "boolean"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          },
+          "prevPage": {
+            "type": "number"
+          },
+          "nextPage": {
+            "type": "number"
+          }
+        }
+      },
+      "Posts": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "imageAlt": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "seoTitle": {
+            "type": "string"
+          },
+          "seoDesctiption": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "topic": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "PostsUrl": {
+        "type": "array",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "AllPosts": {
+        "type": "object",
+        "properties": {
+          "docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/definitions/Posts"
+            }
+          },
+          "totalDocs": {
+            "type": "number"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "pagingCounter": {
+            "type": "number"
+          },
+          "hasPrevPage": {
+            "type": "boolean"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          },
+          "prevPage": {
+            "type": "number"
+          },
+          "nextPage": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
