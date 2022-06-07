@@ -24,6 +24,14 @@ Finally, you can open next url-s:
 - [http://localhost:5050](http://localhost:5050) with your browser to see the result.
 - [http://localhost:5050/swagger](http://localhost:5050/swagger) with your browser to see Swagger documentation.
 
+## Project Structure
+
+This blog consists of three different parts:
+
+- [Front End side](https://github.com/OmiSoftNet/omisoft-blog-template-front)
+- [Back End side](https://github.com/OmiSoftNet/omisoft-blog-template-back)
+- [Admin Panel](https://github.com/OmiSoftNet/omisoft-blog-template-admin)
+
 ## Preview
 
 <img src="./images/screen.png" alt="Preview" width="800">
