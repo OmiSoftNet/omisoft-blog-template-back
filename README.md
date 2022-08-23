@@ -6,8 +6,6 @@
 
 # OMISOFT BLOG EXAMPLE - BACK END
 
----
-
 Here you can find a simple boilerplate for a Blog based on React.js & Next.js. We use this code in the project [SudokuPro.app](https://sudokupro.app)
 
 To run this app configure MongoDB url & JWT Secret in the [.env.development](./.env.development):
@@ -33,8 +31,6 @@ Finally, you can open next url-s:
 
 ## Project Structure
 
----
-
 This blog consists of three different parts:
 
 - [Front End side](https://github.com/OmiSoftNet/omisoft-blog-template-front)
@@ -47,8 +43,6 @@ This blog consists of three different parts:
 
 ## Created by
 
----
-
 [OmiSoft](https://omisoft.net/?utm_source=github&utm_medium=social)
 
 [![OmiSoft.net Facebook page][1.1]][1]
@@ -60,8 +54,6 @@ This blog consists of three different parts:
 [2.1]: http://i.imgur.com/wWzX9uB.png "OmiSoft.net Twitter page"
 
 ## License
-
----
 
 OMISOFT BLOG EXAMPLE is released under the MIT license.  
 See the [LICENSE](./LICENSE.md) for details.
