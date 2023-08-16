@@ -1,10 +1,9 @@
 import { RequestHandler } from "express";
 import Joi from "joi";
-import { PASSWORD_REGEX } from "../../config/auth";
 import UserModel from "../../models/Users/User.model";
 import { TEXT } from "../../utils/JoiErrors";
 import ResponseService from "../../utils/ResponseService";
-import validateFields, { JOI } from "../../utils/validation";
+import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
 
 const validationSchema = JOI.object({
   password: Joi.string().strict().required(),

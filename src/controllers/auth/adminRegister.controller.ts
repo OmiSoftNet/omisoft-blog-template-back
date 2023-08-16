@@ -1,11 +1,10 @@
 import { RequestHandler } from "express";
-import { PASSWORD_REGEX } from "../../config/auth";
+import Joi from "joi";
 import UserModel from "../../models/Users/User.model";
 import { TEXT } from "../../utils/JoiErrors";
 import ResponseService from "../../utils/ResponseService";
-import validateFields, { JOI } from "../../utils/validation";
+import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
 import { USER_ROLES } from "../../constants/roles";
-import Joi from "joi";
 
 const validationSchema = JOI.object({
   email: Joi.string().strict().email().required(),

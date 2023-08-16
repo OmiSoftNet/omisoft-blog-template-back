@@ -1,8 +1,7 @@
 import { RequestHandler } from "express";
-import UserModel from "../../models/Users/User.model";
-import validateFields, { JOI } from "../../utils/validation";
 import Joi from "joi";
-import { PASSWORD_REGEX } from "../../config/auth";
+import UserModel from "../../models/Users/User.model";
+import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import { USER_ROLES } from "../../constants/roles";
