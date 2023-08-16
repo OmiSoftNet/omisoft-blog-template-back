@@ -1,14 +1,9 @@
 import express from "express";
-import dotenv from "dotenv";
-import path from "path";
 import expressLoader from "./src/loaders/express.loader";
 import mongooseLoader from "./src/loaders/mongoose.loader";
+import CONFIG from "./src/config";
 
-dotenv.config({
-  path: path.join(__dirname, ".env"),
-});
-
-const port = process.env.PORT ?? 3000;
+const port = CONFIG.PORT;
 
 const startServer = () => {
   const app = express();
