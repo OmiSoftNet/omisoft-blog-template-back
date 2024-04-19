@@ -6,7 +6,7 @@ export interface IUser {
   validatePassword: (password: string) => boolean;
   setPassword: (password: string) => string;
   generateAccessToken: () => string;
-  generateRefreshJWT: () => string;
+  generateRefreshToken: () => string;
   createdAt: string;
   updatedAt: string;
 }

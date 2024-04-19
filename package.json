@@ -1,13 +1,13 @@
 {
   "name": "omisoft-blog-template-back",
-  "version": "0.7.0",
-  "main": "index.js",
+  "version": "0.8.0",
+  "description": "A very simple Express.js template for new small projects",
+  "author": "OmiSoft.net LLC",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon app.ts",
     "prod": "cross-env NODE_ENV=production ts-node app.ts",
     "build": "npx tsc"
   },
-  "author": "OmiSoft.net LLC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",

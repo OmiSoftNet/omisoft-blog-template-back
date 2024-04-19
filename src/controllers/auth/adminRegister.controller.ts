@@ -28,7 +28,7 @@ const adminRegisterController: RequestHandler = async (req, res) => {
       role: USER_ROLES.ADMIN,
     });
     const accessToken = newAdmin.generateAccessToken();
-    const refreshToken = await newAdmin.generateRefreshJWT();
+    const refreshToken = await newAdmin.generateRefreshToken();
 
     const { _id, email, createdAt, updatedAt } = newAdmin.toObject();
 

@@ -28,7 +28,7 @@ const registerController: RequestHandler = async (req, res) => {
       role: USER_ROLES.USER,
     });
     const accessToken = newUser.generateAccessToken();
-    const refreshToken = await newUser.generateRefreshJWT();
+    const refreshToken = await newUser.generateRefreshToken();
 
     const { _id, email, createdAt, updatedAt } = newUser.toObject();
 

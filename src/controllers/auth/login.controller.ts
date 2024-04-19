@@ -22,7 +22,7 @@ const loginController: RequestHandler = async (req, res) => {
       return ResponseService.error(res, 401, TEXT.ERRORS.wrongCredentials);
 
     const accessToken = user.generateAccessToken();
-    const refreshToken = await user.generateRefreshJWT();
+    const refreshToken = await user.generateRefreshToken();
 
     const { _id, email, createdAt, updatedAt } = user.toObject();
 

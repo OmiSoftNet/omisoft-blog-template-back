@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import mongoosePaginate from "mongoose-paginate-v2";
-import { TOKEN_DATA } from "../../config/token";
+import { TOKEN_CONFIG } from "../../config/token";
 import CONFIG from "../../config";
 import * as bcrypt from "bcrypt";
 import { IUser } from "./types";
@@ -49,24 +49,24 @@ UserSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
       _id: this._id,
-      type: TOKEN_DATA.ACCESS.type,
+      type: TOKEN_CONFIG.ACCESS.type,
     },
     CONFIG.JWT_SECRET,
-    { expiresIn: TOKEN_DATA.ACCESS.expiresIn }
+    { expiresIn: TOKEN_CONFIG.ACCESS.expiresIn }
   );
 };
 
-UserSchema.methods.generateRefreshJWT = async function () {
+UserSchema.methods.generateRefreshToken = async function () {
   await RefreshToken.findOneAndDelete({ user: this._id });
   const newToken = await RefreshToken.create({ user: this._id });
   return jwt.sign(
     {
       tokenId: newToken._id,
-      type: TOKEN_DATA.REFRESH.type,
+      type: TOKEN_CONFIG.REFRESH.type,
     },
     CONFIG.JWT_SECRET,
     {
-      expiresIn: TOKEN_DATA.REFRESH.expiresIn,
+      expiresIn: TOKEN_CONFIG.REFRESH.expiresIn,
     }
   );
 };

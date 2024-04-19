@@ -1,11 +1,10 @@
-export const TOKEN_DATA = {
+export const TOKEN_CONFIG = {
   ACCESS: {
     type: "ACCESS",
-    expiresIn: "24h",
+    expiresIn: 24 * 60 * 60,
   },
   REFRESH: {
     type: "refresh",
-    expiresIn: 60 * 60 * 12,
-    expiresInRemembered: 60 * 60 * 24 * 30,
+    expiresIn: 30 * 24 * 60 * 60,
   },
 };

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { RequestHandler } from "express";
 import CONFIG from "../../config";
-import { TOKEN_DATA } from "../../config/token";
+import { TOKEN_CONFIG } from "../../config/token";
 import RefreshToken from "../../models/RefreshToken/RefreshToken";
 import UserModel from "../../models/Users/User.model";
 
@@ -11,7 +11,7 @@ const updateTokens: RequestHandler = async (req, res) => {
   try {
     const decoded: any = jwt.verify(refreshToken, CONFIG.JWT_SECRET);
 
-    if (decoded.type !== TOKEN_DATA.REFRESH.type) {
+    if (decoded.type !== TOKEN_CONFIG.REFRESH.type) {
       res.status(400).json({
         error: "Invalid token!",
       });
@@ -29,8 +29,8 @@ const updateTokens: RequestHandler = async (req, res) => {
       return res.status(404).json({ error: "Refresh token is unavailable!" });
     }
 
-    const newRefreshToken = await user.generateRefreshJWT();
     const newAccessToken = user.generateAccessToken();
+    const newRefreshToken = await user.generateRefreshToken();
 
     res.json({
       accessToken: newAccessToken,
