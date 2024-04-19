@@ -4,6 +4,7 @@ import { RequestHandler } from "express";
 import CONFIG from "../../config";
 import { TOKEN_DATA } from "../../config/token";
 import RefreshToken from "../../models/RefreshToken/RefreshToken";
+import UserModel from "../../models/Users/User.model";
 
 const updateTokens: RequestHandler = async (req, res) => {
   const { refreshToken } = req.body;
@@ -18,15 +19,18 @@ const updateTokens: RequestHandler = async (req, res) => {
 
     const storedToken = await RefreshToken.findByIdAndDelete(
       new mongoose.Types.ObjectId(decoded.tokenId)
-    ).populate({
-      path: "user",
-    });
+    );
     if (!storedToken) {
       return res.status(404).json({ error: "Refresh token is unavailable!" });
     }
 
-    const newRefreshToken = await storedToken.user.generateRefreshJWT();
-    const newAccessToken = storedToken.user.generateAccessJWT();
+    const user = await UserModel.findOne({ _id: storedToken.user });
+    if (!user) {
+      return res.status(404).json({ error: "Refresh token is unavailable!" });
+    }
+
+    const newRefreshToken = await user.generateRefreshJWT();
+    const newAccessToken = user.generateAccessToken();
 
     res.json({
       accessToken: newAccessToken,
