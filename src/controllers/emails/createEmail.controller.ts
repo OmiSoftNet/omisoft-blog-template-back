@@ -17,7 +17,7 @@ export const createEmailController: RequestHandler = async (req, res) => {
       email: req.body.email.toLowerCase(),
     });
     if (existingEmail) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.emailExists);
+      return ResponseService.error(res, TEXT.ERRORS.emailExists);
     }
     const newEmail = await EmailsModel.create({
       email: req.body.email.toLowerCase(),
@@ -32,7 +32,7 @@ export const createEmailController: RequestHandler = async (req, res) => {
       updatedAt,
     });
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 

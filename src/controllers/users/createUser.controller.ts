@@ -19,7 +19,7 @@ export const createUserController: RequestHandler = async (req, res) => {
       email: req.body.email.toLowerCase(),
     });
     if (existingUser) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.userExists);
+      return ResponseService.error(res, TEXT.ERRORS.userExists);
     }
     const newUser = await UserModel.create({
       ...req.body,
@@ -36,7 +36,7 @@ export const createUserController: RequestHandler = async (req, res) => {
       updatedAt,
     });
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 

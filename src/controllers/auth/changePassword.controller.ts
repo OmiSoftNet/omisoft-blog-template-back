@@ -19,14 +19,14 @@ const changePasswordController: RequestHandler = async (req, res) => {
     const user = await UserModel.findById(req.user._id);
 
     if (!user || !user.validatePassword(password)) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.wrongOldPassword);
+      return ResponseService.error(res, TEXT.ERRORS.wrongOldPassword);
     }
 
     user.setPassword(newPassword);
     await user.save();
     res.status(201).end();
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 

@@ -19,7 +19,7 @@ const registerController: RequestHandler = async (req, res) => {
       email: req.body.email.toLowerCase(),
     });
     if (existingUser) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.somethingWentWrong);
+      return ResponseService.error(res, TEXT.ERRORS.somethingWentWrong);
     }
 
     const newUser = await UserModel.create({
@@ -43,7 +43,7 @@ const registerController: RequestHandler = async (req, res) => {
       refreshToken,
     });
   } catch (err: any) {
-    ResponseService.error(res, 400, err.message);
+    ResponseService.error(res, err.message);
   }
 };
 

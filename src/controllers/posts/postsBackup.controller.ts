@@ -32,7 +32,7 @@ const postsBackup: RequestHandler = async (req, res) => {
       }
     );
     if (!posts) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.postDoesntExists);
+      return ResponseService.error(res, TEXT.ERRORS.postDoesntExists);
     }
 
     const today = new Date();
@@ -44,7 +44,7 @@ const postsBackup: RequestHandler = async (req, res) => {
     res.attachment(`Posts - ${dd}.${mm}.${yyyy}.json`);
     res.send(posts.docs);
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 

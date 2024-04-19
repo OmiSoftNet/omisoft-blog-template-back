@@ -21,14 +21,14 @@ const updateUserController: RequestHandler = async (req, res) => {
     });
 
     if (!updatedUser) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.userDoesntExists);
+      return ResponseService.error(res, TEXT.ERRORS.userDoesntExists);
     }
 
     const { _id, email, createdAt, updatedAt } = updatedUser.toObject();
 
     ResponseService.success(res, { _id, email, createdAt, updatedAt });
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 

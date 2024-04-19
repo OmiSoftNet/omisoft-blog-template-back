@@ -15,7 +15,7 @@ const getAllPostUrlController: RequestHandler = async (req, res) => {
 
     ResponseService.success(res, postsUrls);
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 

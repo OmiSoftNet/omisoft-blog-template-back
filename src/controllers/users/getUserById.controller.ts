@@ -10,7 +10,7 @@ const getUserByIdController: RequestHandler = async (req, res) => {
     const user = await UserModel.findById(userId);
 
     if (!user) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.userDoesntExists);
+      return ResponseService.error(res, TEXT.ERRORS.userDoesntExists);
     }
 
     const { _id, email, createdAt, updatedAt } = user.toObject();
@@ -22,7 +22,7 @@ const getUserByIdController: RequestHandler = async (req, res) => {
       updatedAt,
     });
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 

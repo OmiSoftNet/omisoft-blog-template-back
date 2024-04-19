@@ -14,7 +14,7 @@ const updatePostByIdController: RequestHandler = async (req, res) => {
   try {
     const post = await PostModel.findById(postId);
     if (!post) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.postDoesntExists);
+      return ResponseService.error(res, TEXT.ERRORS.postDoesntExists);
     }
     const checkedValues = { ...post.toObject(), ...req.body };
     delete checkedValues._id;
@@ -34,7 +34,7 @@ const updatePostByIdController: RequestHandler = async (req, res) => {
     });
 
     if (!updatedPost) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.postDoesntExists);
+      return ResponseService.error(res, TEXT.ERRORS.postDoesntExists);
     }
     ResponseService.success(res, updatedPost);
   } catch (error: any) {

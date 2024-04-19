@@ -51,7 +51,7 @@ const validateFields = async (
     await schema.validateAsync(req.body);
     return false;
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
     return true;
   }
 };
@@ -65,7 +65,7 @@ export const validateStatusFields = async (
     await schema.validateAsync(body);
     return false;
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
     return true;
   }
 };

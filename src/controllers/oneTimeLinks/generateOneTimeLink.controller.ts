@@ -4,6 +4,7 @@ import OneTimeLinksModel from "../../models/OneTimtLinks/oneTimeLinks";
 import UserModel from "../../models/Users/User.model";
 import { mailer } from "../../config/nodemailer";
 import ResponseService from "../../utils/ResponseService";
+import { TEXT } from "../../utils/JoiErrors";
 
 type RequestData = {
   email: string;
@@ -19,7 +20,7 @@ const generateOneTimeLinkController: RequestHandler<RequestData> = async (
       email: req.body.email,
     });
     if (!user) {
-      return ResponseService.error(res, 400);
+      return ResponseService.error(res, TEXT.ERRORS.userDoesntExists);
     }
     await OneTimeLinksModel.create({
       token: token,
@@ -37,7 +38,7 @@ const generateOneTimeLinkController: RequestHandler<RequestData> = async (
     mailer(message);
     ResponseService.success(res, message);
   } catch (err: any) {
-    ResponseService.error(res, 400, err.message);
+    ResponseService.error(res, err.message);
   }
 };
 

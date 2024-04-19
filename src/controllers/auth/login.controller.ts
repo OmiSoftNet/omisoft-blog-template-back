@@ -19,7 +19,7 @@ const loginController: RequestHandler = async (req, res) => {
     });
 
     if (!user || !user.validatePassword(req.body.password))
-      return ResponseService.error(res, 401, TEXT.ERRORS.wrongCredentials);
+      return ResponseService.error(res, TEXT.ERRORS.wrongCredentials, 401);
 
     const accessToken = user.generateAccessToken();
     const refreshToken = await user.generateRefreshToken();
@@ -37,7 +37,7 @@ const loginController: RequestHandler = async (req, res) => {
       refreshToken,
     });
   } catch (err: any) {
-    ResponseService.error(res, 400, err.message);
+    ResponseService.error(res, err.message);
   }
 };
 

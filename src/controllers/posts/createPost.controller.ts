@@ -18,7 +18,7 @@ const createPostController: RequestHandler = async (req, res) => {
       url: textForUrl,
     });
     if (existingPost) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.postExists);
+      return ResponseService.error(res, TEXT.ERRORS.postExists);
     }
     const newPost = await PostModel.create({
       ...req.body,

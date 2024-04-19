@@ -19,7 +19,7 @@ const adminRegisterController: RequestHandler = async (req, res) => {
       role: USER_ROLES.ADMIN,
     });
     if (existingAdmin) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.roleExists);
+      return ResponseService.error(res, TEXT.ERRORS.roleExists);
     }
 
     const newAdmin = await UserModel.create({
@@ -43,7 +43,7 @@ const adminRegisterController: RequestHandler = async (req, res) => {
       refreshToken,
     });
   } catch (err: any) {
-    ResponseService.error(res, 400, err.message);
+    ResponseService.error(res, err.message);
   }
 };
 

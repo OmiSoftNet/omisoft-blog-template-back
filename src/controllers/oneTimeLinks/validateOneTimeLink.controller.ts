@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
 import OneTimeLinksModel from "../../models/OneTimtLinks/oneTimeLinks";
 import ResponseService from "../../utils/ResponseService";
+import { TEXT } from "../../utils/JoiErrors";
 
 type RequestData = {
   token: string;
@@ -21,7 +22,7 @@ const validateOneTimeLinkController: RequestHandler<RequestData> = async (
     );
 
     if (!oneTimeLink) {
-      return ResponseService.error(res, 400);
+      return ResponseService.error(res, TEXT.ERRORS.notFound);
     }
 
     await OneTimeLinksModel.findOneAndDelete({
@@ -30,7 +31,7 @@ const validateOneTimeLinkController: RequestHandler<RequestData> = async (
 
     ResponseService.success(res, oneTimeLink);
   } catch (err: any) {
-    ResponseService.error(res, 400, err);
+    ResponseService.error(res, err.message);
   }
 };
 

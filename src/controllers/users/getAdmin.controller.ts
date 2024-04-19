@@ -16,7 +16,7 @@ const getAdminController: RequestHandler = async (req, res) => {
 
     ResponseService.success(res, admin);
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 export default getAdminController;

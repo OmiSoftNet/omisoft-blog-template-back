@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { USER_ROLES } from "../constants/roles";
 import ResponseService from "../utils/ResponseService";
+import { TEXT } from "../utils/JoiErrors";
 
 export const adminVerifyMiddleware = (
   req: Request,
@@ -9,7 +10,7 @@ export const adminVerifyMiddleware = (
 ) => {
   if (req.user.role === USER_ROLES.ADMIN) {
     return next();
-  } else return ResponseService.error(res, 401);
+  } else return ResponseService.error(res, TEXT.ERRORS.unauthorized, 401);
 };
 
 export const moderatorVerifyMiddleware = (
@@ -19,5 +20,5 @@ export const moderatorVerifyMiddleware = (
 ) => {
   if (req.user.role === USER_ROLES.MODERATOR) {
     return next();
-  } else return ResponseService.error(res, 401);
+  } else return ResponseService.error(res, TEXT.ERRORS.unauthorized, 401);
 };

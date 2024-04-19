@@ -10,12 +10,12 @@ const getPostByUrlController: RequestHandler = async (req, res) => {
     const post = await PostModel.findOne({ url: postUrl }).populate('similarArticles');;
 
     if (!post) {
-      return ResponseService.error(res, 400, TEXT.ERRORS.postDoesntExists);
+      return ResponseService.error(res, TEXT.ERRORS.postDoesntExists);
     }
 
     ResponseService.success(res, post);
   } catch (error: any) {
-    ResponseService.error(res, 400, error.message);
+    ResponseService.error(res, error.message);
   }
 };
 
