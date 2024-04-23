@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon app.ts",
     "prod": "cross-env NODE_ENV=production ts-node app.ts",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=5000 --detectOpenHandles",
     "build": "npx tsc"
   },
   "dependencies": {
@@ -29,14 +30,20 @@
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/morgan": "^1.9.9",
     "@types/multer": "^1.4.11",
     "@types/node": "^20.12.7",
     "@types/nodemailer": "^6.4.14",
+    "@types/supertest": "^6.0.2",
     "@types/swagger-ui-express": "^4.1.6",
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^9.2.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
