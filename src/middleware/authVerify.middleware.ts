@@ -24,14 +24,12 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     }
     const parsedToken = req.headers.authorization?.split(" ")[1] ?? "";
 
-    if (!parsedToken)
-      return ResponseService.error(res, TEXT.ERRORS.unauthorized, 401);
+    if (!parsedToken) return ResponseService.error(res, TEXT.ERRORS.unauthorized, 401);
 
     const { _id } = jwt.verify(parsedToken, CONFIG.JWT_SECRET) as JwtPayload;
     const userData = await UserModel.findById(_id);
 
-    if (!userData)
-      return ResponseService.error(res, TEXT.ERRORS.unauthorized, 401);
+    if (!userData) return ResponseService.error(res, TEXT.ERRORS.unauthorized, 401);
 
     req.user = userData as IUser;
 

@@ -14,9 +14,7 @@ const importPosts: RequestHandler = async (req, res) => {
     }
     const file = req.file;
 
-    const obj = fs.readFileSync(
-      path.join(__dirname, `../../../uploads/${file.filename}`)
-    );
+    const obj = fs.readFileSync(path.join(__dirname, `../../../uploads/${file.filename}`));
 
     const posts = JSON.parse(obj).map((post: any) => {
       delete post._id;

@@ -73,7 +73,9 @@ UserSchema.methods.generateRefreshToken = async function () {
 
 UserSchema.plugin(mongoosePaginate);
 
-const UsersSchemaWithPagination: ModelWithPagination<IUser> =
-  mongoose.model<IUser>("Users", UserSchema) as ModelWithPagination<IUser>;
+const UsersSchemaWithPagination: ModelWithPagination<IUser> = mongoose.model<IUser>(
+  "Users",
+  UserSchema
+) as ModelWithPagination<IUser>;
 
 export default UsersSchemaWithPagination;

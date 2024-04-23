@@ -10,10 +10,7 @@ type RequestData = {
   email: string;
 };
 
-const generateOneTimeLinkController: RequestHandler<RequestData> = async (
-  req,
-  res
-) => {
+const generateOneTimeLinkController: RequestHandler<RequestData> = async (req, res) => {
   try {
     const token = generator.generate({ length: 20 });
     const user = await UserModel.findOne({

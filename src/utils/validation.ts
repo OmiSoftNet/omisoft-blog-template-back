@@ -17,10 +17,7 @@ export const publishValidationSchema = JOI.object({
   seoDesctiption: Joi.string().required(),
   topic: Joi.string().required(),
   tags: Joi.array().required(),
-  url: Joi.string()
-    .pattern(URL_REGEX)
-    .message(TEXT.ERRORS.wrongTypeUrl)
-    .required(),
+  url: Joi.string().pattern(URL_REGEX).message(TEXT.ERRORS.wrongTypeUrl).required(),
   status: Joi.string(),
   similarArticles: Joi.array().max(3),
 });
@@ -34,19 +31,12 @@ export const postValidationSchema = JOI.object({
   seoDesctiption: Joi.string().allow(""),
   topic: Joi.string().allow(""),
   tags: Joi.array().allow(""),
-  url: Joi.string()
-    .pattern(URL_REGEX)
-    .allow("")
-    .message(TEXT.ERRORS.wrongTypeUrl),
+  url: Joi.string().pattern(URL_REGEX).allow("").message(TEXT.ERRORS.wrongTypeUrl),
   status: Joi.string(),
   similarArticles: Joi.array().max(3),
 });
 
-const validateFields = async (
-  schema: Joi.ObjectSchema<any>,
-  req: Request,
-  res: Response
-) => {
+const validateFields = async (schema: Joi.ObjectSchema<any>, req: Request, res: Response) => {
   try {
     await schema.validateAsync(req.body);
     return false;
@@ -56,11 +46,7 @@ const validateFields = async (
   }
 };
 
-export const validateStatusFields = async (
-  schema: Joi.ObjectSchema<any>,
-  body: any,
-  res: Response
-) => {
+export const validateStatusFields = async (schema: Joi.ObjectSchema<any>, body: any, res: Response) => {
   try {
     await schema.validateAsync(body);
     return false;

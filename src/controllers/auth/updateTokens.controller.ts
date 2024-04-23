@@ -17,9 +17,7 @@ const updateTokens: RequestHandler = async (req, res) => {
       });
     }
 
-    const storedToken = await RefreshToken.findByIdAndDelete(
-      new mongoose.Types.ObjectId(decoded.tokenId)
-    );
+    const storedToken = await RefreshToken.findByIdAndDelete(new mongoose.Types.ObjectId(decoded.tokenId));
     if (!storedToken) {
       return res.status(404).json({ error: "Refresh token is unavailable!" });
     }

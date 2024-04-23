@@ -5,10 +5,7 @@ import ResponseService from "../../utils/ResponseService";
 
 const getAllPostUrlController: RequestHandler = async (req, res) => {
   try {
-    const posts = await PostModel.find(
-      { status: STATUS_TYPES_ENUM.PUBLISHED },
-      { __v: false }
-    );
+    const posts = await PostModel.find({ status: STATUS_TYPES_ENUM.PUBLISHED }, { __v: false });
     const postsUrls = posts.map((post) => {
       return { _id: post._id, url: post.url, title: post.title };
     });

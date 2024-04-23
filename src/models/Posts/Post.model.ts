@@ -55,6 +55,8 @@ const PostSchema = new mongoose.Schema(
 
 PostSchema.plugin(mongoosePaginate);
 
-const PostsSchemaWithPagination: ModelWithPagination<IPost> =
-  mongoose.model<IPost>("Posts", PostSchema) as ModelWithPagination<IPost>;
+const PostsSchemaWithPagination: ModelWithPagination<IPost> = mongoose.model<IPost>(
+  "Posts",
+  PostSchema
+) as ModelWithPagination<IPost>;
 export default PostsSchemaWithPagination;

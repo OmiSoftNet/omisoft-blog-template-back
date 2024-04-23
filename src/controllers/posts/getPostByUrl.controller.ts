@@ -7,7 +7,7 @@ const getPostByUrlController: RequestHandler = async (req, res) => {
   const postUrl = req.params.url;
 
   try {
-    const post = await PostModel.findOne({ url: postUrl }).populate('similarArticles');;
+    const post = await PostModel.findOne({ url: postUrl }).populate("similarArticles");
 
     if (!post) {
       return ResponseService.error(res, TEXT.ERRORS.postDoesntExists);

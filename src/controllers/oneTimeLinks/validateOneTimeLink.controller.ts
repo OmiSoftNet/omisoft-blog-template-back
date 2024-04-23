@@ -7,10 +7,7 @@ type RequestData = {
   token: string;
 };
 
-const validateOneTimeLinkController: RequestHandler<RequestData> = async (
-  req,
-  res
-) => {
+const validateOneTimeLinkController: RequestHandler<RequestData> = async (req, res) => {
   const token = req.body.token;
 
   try {

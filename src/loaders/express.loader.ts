@@ -19,11 +19,7 @@ export default function loadServer() {
   if (isDevEnv()) {
     app.use(morgan("tiny"));
 
-    app.use(
-      API_ROUTES.SERVICES.SWAGGER,
-      swaggerUI.serve,
-      swaggerUI.setup(swaggerDoc)
-    );
+    app.use(API_ROUTES.SERVICES.SWAGGER, swaggerUI.serve, swaggerUI.setup(swaggerDoc));
   }
 
   routes(app);

@@ -41,6 +41,6 @@ export const API_ROUTES = {
   },
   ONE_TIME_LINKS: {
     GENERATE: `${BASE_URL}one-time-link/generate/`,
-    VALIDATE: `${BASE_URL}one-time-link/validate/`
+    VALIDATE: `${BASE_URL}one-time-link/validate/`,
   },
 };

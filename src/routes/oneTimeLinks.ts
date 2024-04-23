@@ -1,10 +1,6 @@
 import { Router } from "express";
 import { API_ROUTES } from "../config/apiRoutes";
-import {
-  generateOneTimeLinkController,
-  validateOneTimeLinkController,
-
-} from "../controllers/oneTimeLinks";
+import { generateOneTimeLinkController, validateOneTimeLinkController } from "../controllers/oneTimeLinks";
 
 export default () => {
   const route = Router();

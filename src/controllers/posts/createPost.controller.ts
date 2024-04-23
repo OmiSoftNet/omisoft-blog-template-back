@@ -3,10 +3,7 @@ import PostModel from "../../models/Posts/Post.model";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import { STATUS_TYPES_ENUM } from "../../constants/postStatus";
-import {
-  postValidationSchema,
-  validateStatusFields,
-} from "../../utils/validation";
+import { postValidationSchema, validateStatusFields } from "../../utils/validation";
 
 const createPostController: RequestHandler = async (req, res) => {
   if (await validateStatusFields(postValidationSchema, req.body, res)) return;
@@ -28,8 +25,7 @@ const createPostController: RequestHandler = async (req, res) => {
 
     ResponseService.success(res, newPost);
   } catch (error: any) {
-    const message =
-      error.code === 11000 ? TEXT.ERRORS.postExists : error.message;
+    const message = error.code === 11000 ? TEXT.ERRORS.postExists : error.message;
     res.status(400).json({
       error: message,
     });

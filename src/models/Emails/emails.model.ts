@@ -18,10 +18,9 @@ const EmailsSchema = new mongoose.Schema(
 
 EmailsSchema.plugin(mongoosePaginate);
 
-const EmailsSchemaWithPagination: ModelWithPagination<IEmails> =
-  mongoose.model<IEmails>(
-    "Emails",
-    EmailsSchema
-  ) as ModelWithPagination<IEmails>;
+const EmailsSchemaWithPagination: ModelWithPagination<IEmails> = mongoose.model<IEmails>(
+  "Emails",
+  EmailsSchema
+) as ModelWithPagination<IEmails>;
 
 export default EmailsSchemaWithPagination;

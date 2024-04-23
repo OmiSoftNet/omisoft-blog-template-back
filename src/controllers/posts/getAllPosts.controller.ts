@@ -11,10 +11,7 @@ const getAllPostController: RequestHandler = async (req, res) => {
     status: STATUS_TYPES_ENUM.PUBLISHED,
   };
 
-  if (
-    queryStatus === STATUS_TYPES_ENUM.ARCHIVED ||
-    queryStatus === STATUS_TYPES_ENUM.DRAFT
-  ) {
+  if (queryStatus === STATUS_TYPES_ENUM.ARCHIVED || queryStatus === STATUS_TYPES_ENUM.DRAFT) {
     searchParams.status = queryStatus;
   }
   if (queryStatus === "All") {

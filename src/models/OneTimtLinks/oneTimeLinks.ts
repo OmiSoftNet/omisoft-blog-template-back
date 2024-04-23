@@ -17,7 +17,4 @@ const OneTimeLinksSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model<IOneTimeLinksSchema>(
-  "OneTimeLinks",
-  OneTimeLinksSchema
-);
+export default mongoose.model<IOneTimeLinksSchema>("OneTimeLinks", OneTimeLinksSchema);

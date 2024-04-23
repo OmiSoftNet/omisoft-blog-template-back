@@ -3,11 +3,7 @@ import { STATUS_TYPES_ENUM } from "../../constants/postStatus";
 import PostModel from "../../models/Posts/Post.model";
 import { TEXT } from "../../utils/JoiErrors";
 import ResponseService from "../../utils/ResponseService";
-import {
-  validateStatusFields,
-  postValidationSchema,
-  publishValidationSchema,
-} from "../../utils/validation";
+import { validateStatusFields, postValidationSchema, publishValidationSchema } from "../../utils/validation";
 
 const updatePostByIdController: RequestHandler = async (req, res) => {
   const postId = req.params.id;
@@ -21,13 +17,9 @@ const updatePostByIdController: RequestHandler = async (req, res) => {
     delete checkedValues.createdAt;
     delete checkedValues.updatedAt;
     delete checkedValues.__v;
-    if (await validateStatusFields(postValidationSchema, checkedValues, res))
-      return;
+    if (await validateStatusFields(postValidationSchema, checkedValues, res)) return;
     if (req.body.status === STATUS_TYPES_ENUM.PUBLISHED) {
-      if (
-        await validateStatusFields(publishValidationSchema, checkedValues, res)
-      )
-        return;
+      if (await validateStatusFields(publishValidationSchema, checkedValues, res)) return;
     }
     const updatedPost = await PostModel.findByIdAndUpdate(postId, req.body, {
       new: true,
