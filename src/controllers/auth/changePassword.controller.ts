@@ -4,6 +4,7 @@ import UserModel from "../../models/Users/User.model";
 import { TEXT } from "../../utils/JoiErrors";
 import ResponseService from "../../utils/ResponseService";
 import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
+import { UserRequest } from "../../../test/utils/UserRequest";
 
 const validationSchema = JOI.object({
   password: Joi.string().strict().required(),
@@ -16,7 +17,8 @@ const changePasswordController: RequestHandler = async (req, res) => {
   if (await validateFields(validationSchema, req, res)) return;
 
   try {
-    const user = await UserModel.findById(req.user._id);
+    const userId = (req as UserRequest).userId;
+    const user = await UserModel.findById(userId);
 
     if (!user || !user.validatePassword(password)) {
       return ResponseService.error(res, TEXT.ERRORS.wrongOldPassword);
