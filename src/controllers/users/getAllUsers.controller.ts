@@ -9,7 +9,7 @@ const getAllUsersController: RequestHandler = async (req, res) => {
       {
         page: Number(req.query.page ?? 1),
         limit: Number(req.query.limit ?? 30),
-        select: ["-__v", "-hashedPassword"],
+        select: ["-hashedPassword"],
       }
     );
 

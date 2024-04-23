@@ -23,7 +23,6 @@ const getAllPostController: RequestHandler = async (req, res) => {
       {
         page: Number(req.query.page ?? 1),
         limit: Number(req.query.limit ?? 8),
-        select: ["-__v"],
         sort: "-createdAt",
       }
     );

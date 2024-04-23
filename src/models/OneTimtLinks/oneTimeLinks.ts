@@ -12,9 +12,7 @@ const OneTimeLinksSchema = new mongoose.Schema(
       required: true,
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: false, versionKey: false }
 );
 
 export default mongoose.model<IOneTimeLinksSchema>("OneTimeLinks", OneTimeLinksSchema);

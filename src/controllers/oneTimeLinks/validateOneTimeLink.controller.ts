@@ -11,12 +11,9 @@ const validateOneTimeLinkController: RequestHandler<RequestData> = async (req, r
   const token = req.body.token;
 
   try {
-    const oneTimeLink = await OneTimeLinksModel.findOne(
-      {
-        token,
-      },
-      ["-__v", "-updatedAt"]
-    );
+    const oneTimeLink = await OneTimeLinksModel.findOne({
+      token,
+    });
 
     if (!oneTimeLink) {
       return ResponseService.error(res, TEXT.ERRORS.notFound);

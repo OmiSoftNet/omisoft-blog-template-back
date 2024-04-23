@@ -13,6 +13,7 @@ const EmailsSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 
