@@ -9,21 +9,12 @@ type UserBody = {
   name?: string;
 };
 
-type FinishRegistrationBody = {
-  nickname?: string;
-  countryCode?: string;
-};
-
 type RefreshTokenBody = {
   refreshToken?: string;
 };
 
 const registerWithEmail = async (body: UserBody | undefined) => {
-  return await supertest(app).post("/auth/registration").send(body);
-};
-
-const finishRegistration = async (body: FinishRegistrationBody | undefined) => {
-  return await supertest(app).post("/auth/registration").send(body);
+  return await supertest(app).post("/auth/register").send(body);
 };
 
 const loginWithEmail = async (body: UserBody | undefined) => {
@@ -34,4 +25,4 @@ const doRefreshToken = async (body: RefreshTokenBody | undefined) => {
   return await supertest(app).post("/auth/refresh-token").send(body);
 };
 
-export { registerWithEmail, finishRegistration, loginWithEmail, doRefreshToken };
+export { registerWithEmail, loginWithEmail, doRefreshToken };

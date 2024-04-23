@@ -4,7 +4,7 @@ import { connectMockDatabase, disconnectMockDatabase } from "../utils/MockMongoL
 import decodeAccessToken from "../utils/JwtTokenHelper";
 import { loginWithEmail, registerWithEmail } from "../api/AuthApis";
 // import { getPoints } from "../api/PointsApis";
-import { USER_EMAIL, USER_NAME, USER_PASSWORD } from "../api/UserCredentials";
+import { USER_EMAIL, USER_PASSWORD } from "../api/UserCredentials";
 
 /**
  * Login User Tests
@@ -27,7 +27,6 @@ describe("Run Login Tests", () => {
     const response = await registerWithEmail({
       email: USER_EMAIL,
       password: USER_PASSWORD,
-      name: USER_NAME,
     });
 
     expect(response.status).toBe(200);
@@ -35,8 +34,6 @@ describe("Run Login Tests", () => {
     expect(response.body.user).toHaveProperty("_id");
     expect(response.body.user).toHaveProperty("email");
     expect(response.body.user.email).toBe(USER_EMAIL);
-    expect(response.body.user).toHaveProperty("name");
-    expect(response.body.user.name).toBe(USER_NAME);
     expect(response.body).toHaveProperty("accessToken");
     expect(response.body).toHaveProperty("refreshToken");
   });
@@ -52,8 +49,6 @@ describe("Run Login Tests", () => {
     expect(response.body.user).toHaveProperty("_id");
     expect(response.body.user).toHaveProperty("email");
     expect(response.body.user.email).toBe(USER_EMAIL);
-    expect(response.body.user).toHaveProperty("name");
-    expect(response.body.user.name).toBe(USER_NAME);
     expect(response.body.user).toHaveProperty("createdAt");
     expect(response.body.user).toHaveProperty("updatedAt");
     expect(response.body).toHaveProperty("accessToken");
