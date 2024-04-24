@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { USER_ROLES } from "../constants/roles";
+import { USER_ROLES } from "../constants/UserRolesEnum";
 import ResponseService from "../utils/ResponseService";
 import { TEXT } from "../utils/JoiErrors";
 import { UserRequest } from "../../test/utils/UserRequest";

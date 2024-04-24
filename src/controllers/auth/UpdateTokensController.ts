@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { RequestHandler } from "express";
 import CONFIG from "../../config";
-import { TOKEN_CONFIG } from "../../config/token";
+import { TOKEN_CONFIG } from "../../config/JwtConfig";
 import RefreshToken from "../../models/RefreshToken/RefreshTokenModel";
 import UserModel from "../../models/Users/UserModel";
 

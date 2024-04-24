@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
-import { STATUS_TYPES_ENUM } from "../../constants/postStatus";
+import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 import { ModelWithPagination } from "../types";
 import { IPost } from "./types";
 

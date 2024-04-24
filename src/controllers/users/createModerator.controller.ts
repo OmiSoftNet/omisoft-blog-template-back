@@ -4,7 +4,7 @@ import UserModel from "../../models/Users/UserModel";
 import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
-import { USER_ROLES } from "../../constants/roles";
+import { USER_ROLES } from "../../constants/UserRolesEnum";
 
 const validationSchema = JOI.object({
   email: Joi.string().strict().email().required(),

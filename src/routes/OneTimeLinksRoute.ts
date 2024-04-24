@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { API_ROUTES } from "../config/apiRoutes";
-import { generateOneTimeLinkController, validateOneTimeLinkController } from "../controllers/oneTimeLinks";
+import { API_ROUTES } from "../config/ApiRoutes";
+import { GenerateOneTimeLinkController, ValidateOneTimeLinkController } from "../controllers/oneTimeLinks";
 
 export default () => {
   const route = Router();
 
-  route.post(API_ROUTES.ONE_TIME_LINKS.VALIDATE, validateOneTimeLinkController);
-  route.post(API_ROUTES.ONE_TIME_LINKS.GENERATE, generateOneTimeLinkController);
+  route.post(API_ROUTES.ONE_TIME_LINKS.GENERATE, GenerateOneTimeLinkController);
+  route.post(API_ROUTES.ONE_TIME_LINKS.VALIDATE, ValidateOneTimeLinkController);
 
   return route;
 };

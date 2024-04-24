@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import PostModel from "../../models/Posts/PostModel";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
-import { STATUS_TYPES_ENUM } from "../../constants/postStatus";
+import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 
 const postsBackup: RequestHandler = async (req, res) => {
   const queryStatus = req.query.status;

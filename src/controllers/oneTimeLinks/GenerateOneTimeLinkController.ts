@@ -2,7 +2,7 @@ import generator from "generate-password";
 import { RequestHandler } from "express";
 import OneTimeLinksModel from "../../models/OneTimeLinks/OneTimeLinkModel";
 import UserModel from "../../models/Users/UserModel";
-import { mailer } from "../../config/nodemailer";
+import { mailer } from "../../config/NodeMailer";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import validateFields, { JOI } from "../../utils/validation";

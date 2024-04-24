@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import mongoosePaginate from "mongoose-paginate-v2";
-import { TOKEN_CONFIG } from "../../config/token";
+import { TOKEN_CONFIG } from "../../config/JwtConfig";
 import CONFIG from "../../config";
 import * as bcrypt from "bcrypt";
 import { IUser } from "./types";

@@ -6,7 +6,7 @@ import routes from "../routes";
 import errorHandlerMiddleware from "../middleware/ErrorHandlerMiddleware";
 import corsMiddleware from "../middleware/CorsMiddleware";
 import authVerifyMiddleware from "../middleware/AuthVerifyMiddleware";
-import { API_ROUTES } from "../config/apiRoutes";
+import { API_ROUTES } from "../config/ApiRoutes";
 import { isDevEnv } from "../utils/EnvChecker";
 
 export default function loadServer() {
