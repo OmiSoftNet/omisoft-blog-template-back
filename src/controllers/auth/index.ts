@@ -1,15 +1,15 @@
-import adminRegisterController from "./adminRegister.controller";
-import loginController from "./login.controller";
-import registerController from "./register.controller";
-import changePasswordController from "./changePassword.controller";
-import updateTokensController from "./updateTokens.controller";
-import resetPasswordController from "./resetPassword.controller";
+import AdminRegistrationController from "./AdminRegistrationController";
+import ChangePasswordController from "./ChangePasswordController";
+import LoginController from "./LoginController";
+import RegistrationController from "./RegistrationController";
+import ResetPasswordController from "./ResetPasswordController";
+import UpdateTokensController from "./UpdateTokensController";
 
 export {
-  registerController,
-  loginController,
-  adminRegisterController,
-  changePasswordController,
-  updateTokensController,
-  resetPasswordController,
+  AdminRegistrationController,
+  ChangePasswordController,
+  LoginController,
+  RegistrationController,
+  ResetPasswordController,
+  UpdateTokensController,
 };

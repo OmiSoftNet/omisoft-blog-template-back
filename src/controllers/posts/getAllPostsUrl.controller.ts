@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import { STATUS_TYPES_ENUM } from "../../constants/postStatus";
-import PostModel from "../../models/Posts/Post.model";
+import PostModel from "../../models/Posts/PostModel";
 import ResponseService from "../../utils/ResponseService";
 
 const getAllPostUrlController: RequestHandler = async (req, res) => {

@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import Joi from "joi";
-import UserModel from "../../models/Users/User.model";
+import UserModel from "../../models/Users/UserModel";
 import { TEXT } from "../../utils/JoiErrors";
 import ResponseService from "../../utils/ResponseService";
 import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
@@ -11,7 +11,7 @@ const validationSchema = JOI.object({
   newPassword: Joi.string().strict().pattern(PASSWORD_REGEX).required(),
 });
 
-const changePasswordController: RequestHandler = async (req, res) => {
+const ChangePasswordController: RequestHandler = async (req, res) => {
   const { newPassword, password } = req.body;
 
   if (await validateFields(validationSchema, req, res)) return;
@@ -32,4 +32,4 @@ const changePasswordController: RequestHandler = async (req, res) => {
   }
 };
 
-export default changePasswordController;
+export default ChangePasswordController;

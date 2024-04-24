@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import Joi from "joi";
-import UserModel from "../../models/Users/User.model";
+import UserModel from "../../models/Users/UserModel";
 import { TEXT } from "../../utils/JoiErrors";
 import ResponseService from "../../utils/ResponseService";
 import validateFields, { JOI } from "../../utils/validation";

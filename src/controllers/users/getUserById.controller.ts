@@ -1,4 +1,4 @@
-import UserModel from "../../models/Users/User.model";
+import UserModel from "../../models/Users/UserModel";
 import { RequestHandler } from "express";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";

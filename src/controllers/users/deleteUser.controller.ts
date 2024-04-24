@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserModel from "../../models/Users/User.model";
+import UserModel from "../../models/Users/UserModel";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import { UserRequest } from "../../../test/utils/UserRequest";

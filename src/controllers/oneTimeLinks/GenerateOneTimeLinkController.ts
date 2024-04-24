@@ -1,16 +1,26 @@
 import generator from "generate-password";
 import { RequestHandler } from "express";
-import OneTimeLinksModel from "../../models/OneTimtLinks/oneTimeLinks";
-import UserModel from "../../models/Users/User.model";
+import OneTimeLinksModel from "../../models/OneTimeLinks/OneTimeLinkModel";
+import UserModel from "../../models/Users/UserModel";
 import { mailer } from "../../config/nodemailer";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
+import validateFields, { JOI } from "../../utils/validation";
+import Joi from "joi";
 
 type RequestData = {
   email: string;
 };
 
-const generateOneTimeLinkController: RequestHandler<RequestData> = async (req, res) => {
+const validationSchema = JOI.object({
+  email: Joi.string().strict().email().required(),
+});
+
+const GenerateOneTimeLinkController: RequestHandler<RequestData> = async (req, res) => {
+  if (await validateFields(validationSchema, req, res)) {
+    return;
+  }
+
   try {
     const token = generator.generate({ length: 20 });
     const user = await UserModel.findOne({
@@ -39,4 +49,4 @@ const generateOneTimeLinkController: RequestHandler<RequestData> = async (req, r
   }
 };
 
-export default generateOneTimeLinkController;
+export default GenerateOneTimeLinkController;

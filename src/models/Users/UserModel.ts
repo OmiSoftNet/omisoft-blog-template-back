@@ -6,7 +6,7 @@ import CONFIG from "../../config";
 import * as bcrypt from "bcrypt";
 import { IUser } from "./types";
 import { ModelWithPagination } from "../types";
-import RefreshToken from "../RefreshToken/RefreshToken";
+import RefreshToken from "../RefreshToken/RefreshTokenModel";
 
 const UserSchema = new mongoose.Schema(
   {

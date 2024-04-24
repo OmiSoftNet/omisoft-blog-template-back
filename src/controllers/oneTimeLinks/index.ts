@@ -1,4 +1,4 @@
-import generateOneTimeLinkController from "./generateOneTimeLink.controller";
-import validateOneTimeLinkController from "./validateOneTimeLink.controller";
+import GenerateOneTimeLinkController from "./GenerateOneTimeLinkController";
+import ValidateOneTimeLinkController from "./ValidateOneTimeLinkController";
 
-export { generateOneTimeLinkController, validateOneTimeLinkController };
+export { GenerateOneTimeLinkController, ValidateOneTimeLinkController };

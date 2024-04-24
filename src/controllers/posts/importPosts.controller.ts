@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import path from "path";
 import ResponseService from "../../utils/ResponseService";
-import PostModel from "../../models/Posts/Post.model";
+import PostModel from "../../models/Posts/PostModel";
 
 const fs = require("fs");
 const util = require("util");

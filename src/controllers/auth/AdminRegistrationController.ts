@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import Joi from "joi";
-import UserModel from "../../models/Users/User.model";
+import UserModel from "../../models/Users/UserModel";
 import { TEXT } from "../../utils/JoiErrors";
 import ResponseService from "../../utils/ResponseService";
 import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
@@ -11,7 +11,7 @@ const validationSchema = JOI.object({
   password: Joi.string().strict().pattern(PASSWORD_REGEX).required(),
 });
 
-const adminRegisterController: RequestHandler = async (req, res) => {
+const AdminRegistrationController: RequestHandler = async (req, res) => {
   if (await validateFields(validationSchema, req, res)) return;
 
   try {
@@ -47,4 +47,4 @@ const adminRegisterController: RequestHandler = async (req, res) => {
   }
 };
 
-export default adminRegisterController;
+export default AdminRegistrationController;

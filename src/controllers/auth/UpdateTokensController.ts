@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 import { RequestHandler } from "express";
 import CONFIG from "../../config";
 import { TOKEN_CONFIG } from "../../config/token";
-import RefreshToken from "../../models/RefreshToken/RefreshToken";
-import UserModel from "../../models/Users/User.model";
+import RefreshToken from "../../models/RefreshToken/RefreshTokenModel";
+import UserModel from "../../models/Users/UserModel";
 
-const updateTokens: RequestHandler = async (req, res) => {
+const UpdateTokensController: RequestHandler = async (req, res) => {
   const { refreshToken } = req.body;
   try {
     const decoded: any = jwt.verify(refreshToken, CONFIG.JWT_SECRET);
@@ -49,4 +49,4 @@ const updateTokens: RequestHandler = async (req, res) => {
   }
 };
 
-export default updateTokens;
+export default UpdateTokensController;

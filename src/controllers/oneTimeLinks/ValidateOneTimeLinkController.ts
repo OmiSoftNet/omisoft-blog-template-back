@@ -1,13 +1,23 @@
 import { RequestHandler } from "express";
-import OneTimeLinksModel from "../../models/OneTimtLinks/oneTimeLinks";
+import OneTimeLinksModel from "../../models/OneTimeLinks/OneTimeLinkModel";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
+import validateFields, { JOI } from "../../utils/validation";
+import Joi from "joi";
 
 type RequestData = {
   token: string;
 };
 
-const validateOneTimeLinkController: RequestHandler<RequestData> = async (req, res) => {
+const validationSchema = JOI.object({
+  token: Joi.string().strict().required(),
+});
+
+const ValidateOneTimeLinkController: RequestHandler<RequestData> = async (req, res) => {
+  if (await validateFields(validationSchema, req, res)) {
+    return;
+  }
+
   const token = req.body.token;
 
   try {
@@ -29,4 +39,4 @@ const validateOneTimeLinkController: RequestHandler<RequestData> = async (req, r
   }
 };
 
-export default validateOneTimeLinkController;
+export default ValidateOneTimeLinkController;

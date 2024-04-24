@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import PostModel from "../../models/Posts/Post.model";
+import PostModel from "../../models/Posts/PostModel";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 

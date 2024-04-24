@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import UserModel from "../../models/Users/User.model";
+import UserModel from "../../models/Users/UserModel";
 import ResponseService from "../../utils/ResponseService";
 import validateFields, { JOI } from "../../utils/validation";
 import Joi from "joi";
@@ -10,7 +10,7 @@ const validationSchema = JOI.object({
   password: Joi.string().strict().required(),
 });
 
-const loginController: RequestHandler = async (req, res) => {
+const LoginController: RequestHandler = async (req, res) => {
   if (await validateFields(validationSchema, req, res)) return;
 
   try {
@@ -41,4 +41,4 @@ const loginController: RequestHandler = async (req, res) => {
   }
 };
 
-export default loginController;
+export default LoginController;
