@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import loadServer from "../../src/loaders/express.loader";
+import loadServer from "../../src/loaders/ExpressLoader";
 
 const app = loadServer();
 

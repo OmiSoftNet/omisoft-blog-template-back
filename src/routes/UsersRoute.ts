@@ -11,7 +11,7 @@ import {
   clearPasswordController,
   getAdminController,
 } from "../controllers/users";
-import { adminVerifyMiddleware } from "../middleware/roleVerify.moddleware";
+import { adminVerifyMiddleware } from "../middleware/RoleVerifyMiddleware";
 
 export default () => {
   const route = Router();

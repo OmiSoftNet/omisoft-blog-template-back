@@ -3,9 +3,9 @@ import morgan from "morgan";
 import swaggerUI from "swagger-ui-express";
 import swaggerDoc from "../../swagger.json";
 import routes from "../routes";
-import errorHandlerMiddleware from "../middleware/errorHandler.middleware";
-import corsMiddleware from "../middleware/cors.middleware";
-import authVerifyMiddleware from "../middleware/authVerify.middleware";
+import errorHandlerMiddleware from "../middleware/ErrorHandlerMiddleware";
+import corsMiddleware from "../middleware/CorsMiddleware";
+import authVerifyMiddleware from "../middleware/AuthVerifyMiddleware";
 import { API_ROUTES } from "../config/apiRoutes";
 import { isDevEnv } from "../utils/EnvChecker";
 

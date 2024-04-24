@@ -13,7 +13,7 @@ import {
   getAllPostAdminController,
 } from "../controllers/posts";
 import multer from "multer";
-import { adminVerifyMiddleware } from "../middleware/roleVerify.moddleware";
+import { adminVerifyMiddleware } from "../middleware/RoleVerifyMiddleware";
 const upload = multer({ dest: "uploads/" });
 
 export default () => {
@@ -29,11 +29,7 @@ export default () => {
   route.post(API_ROUTES.POSTS.IMPORT, upload.single("posts"), importPosts);
   route.post(API_ROUTES.POSTS.CREATE, createPostController);
   route.put(API_ROUTES.POSTS.UPDATE_POST, updatePostByIdController);
-  route.delete(
-    API_ROUTES.POSTS.DELETE,
-    adminVerifyMiddleware,
-    deletePostController
-  );
+  route.delete(API_ROUTES.POSTS.DELETE, adminVerifyMiddleware, deletePostController);
 
   return route;
 };
