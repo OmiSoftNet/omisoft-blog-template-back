@@ -32,10 +32,6 @@ export const API_ROUTES = {
     UPDATE_POST: `${BASE_URL}posts/update/:id/`,
     BACKUP: `${BASE_URL}posts/backup/`,
   },
-  EMAILS: {
-    CREATE: `${BASE_URL}blog/email/create/`,
-    ALL_EMAILS: `${BASE_URL}email/`,
-  },
   SERVICES: {
     SWAGGER: `${BASE_URL}swagger/`,
   },
