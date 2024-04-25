@@ -4,7 +4,7 @@ import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 
-const getAllPostController: RequestHandler = async (req, res) => {
+const GetAllPostsController: RequestHandler = async (req, res) => {
   const queryStatus = req.query.status;
 
   let searchParams: { status?: string } = {
@@ -35,4 +35,4 @@ const getAllPostController: RequestHandler = async (req, res) => {
   }
 };
 
-export default getAllPostController;
+export default GetAllPostsController;

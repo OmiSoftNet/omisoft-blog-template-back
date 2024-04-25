@@ -9,7 +9,7 @@ const validationSchema = JOI.object({
   email: Joi.string().strict().email().required(),
 });
 
-const updateUserController: RequestHandler = async (req, res) => {
+const UpdateUserController: RequestHandler = async (req, res) => {
   if (await validateFields(validationSchema, req, res)) return;
 
   const userId = req.params.id;
@@ -32,4 +32,4 @@ const updateUserController: RequestHandler = async (req, res) => {
   }
 };
 
-export default updateUserController;
+export default UpdateUserController;

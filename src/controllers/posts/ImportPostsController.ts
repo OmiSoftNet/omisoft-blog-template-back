@@ -7,7 +7,7 @@ const fs = require("fs");
 const util = require("util");
 const unlinkFile = util.promisify(fs.unlink);
 
-const importPosts: RequestHandler = async (req, res) => {
+const ImportPostsController: RequestHandler = async (req, res) => {
   try {
     if (!req.file) {
       return;
@@ -31,4 +31,4 @@ const importPosts: RequestHandler = async (req, res) => {
   }
 };
 
-export default importPosts;
+export default ImportPostsController;

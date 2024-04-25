@@ -11,7 +11,7 @@ const validationSchema = JOI.object({
   password: Joi.string().strict().pattern(PASSWORD_REGEX).required(),
 });
 
-export const createUserController: RequestHandler = async (req, res) => {
+export const CreateModeratorController: RequestHandler = async (req, res) => {
   try {
     if (await validateFields(validationSchema, req, res)) return;
 
@@ -23,7 +23,7 @@ export const createUserController: RequestHandler = async (req, res) => {
     }
     const newUser = await UserModel.create({
       ...req.body,
-      role: USER_ROLES.USER,
+      role: USER_ROLES.MODERATOR,
       email: req.body.email.toLowerCase(),
     });
 
@@ -40,4 +40,4 @@ export const createUserController: RequestHandler = async (req, res) => {
   }
 };
 
-export default createUserController;
+export default CreateModeratorController;

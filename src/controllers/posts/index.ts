@@ -1,23 +1,23 @@
-import createPostController from "./createPost.controller";
-import deletePostController from "./deletePost.controller";
-import getAllPostController from "./getAllPosts.controller";
-import getPostByUrlController from "./getPostByUrl.controller";
-import getAllPostUrlController from "./getAllPostsUrl.controller";
-import updatePostByIdController from "./updatePostById.controller";
-import postsBackup from "./postsBackup.controller";
-import importPosts from "./importPosts.controller";
-import getPostByIdController from "./getPostById.controller";
-import getAllPostAdminController from "./getAllPostAdmin";
+import CreatePostController from "./CreatePostController";
+import DeletePostController from "./DeletePostController";
+import GetAllPostAdminController from "./GetAllPostAdminController";
+import GetAllPostsController from "./GetAllPostsController";
+import GetAllPostsUrlController from "./GetAllPostsUrlController";
+import GetPostByIdController from "./GetPostByIdController";
+import GetPostByUrlController from "./GetPostByUrlController";
+import PostsBackupController from "./PostsBackupController";
+import ImportPostsController from "./ImportPostsController";
+import UpdatePostByIdController from "./UpdatePostByIdController";
 
 export {
-  createPostController,
-  deletePostController,
-  getAllPostUrlController,
-  getAllPostController,
-  getAllPostAdminController,
-  getPostByUrlController,
-  updatePostByIdController,
-  postsBackup,
-  importPosts,
-  getPostByIdController,
+  CreatePostController,
+  DeletePostController,
+  GetAllPostAdminController,
+  GetAllPostsController,
+  GetAllPostsUrlController,
+  GetPostByIdController,
+  GetPostByUrlController,
+  PostsBackupController,
+  ImportPostsController,
+  UpdatePostByIdController,
 };

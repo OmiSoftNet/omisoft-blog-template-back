@@ -9,7 +9,7 @@ const validationSchema = JOI.object({
   email: Joi.string().strict().email().required(),
 });
 
-const clearPasswordController: RequestHandler = async (req, res) => {
+const ClearPasswordController: RequestHandler = async (req, res) => {
   if (await validateFields(validationSchema, req, res)) return;
 
   const { body } = req;
@@ -35,4 +35,4 @@ const clearPasswordController: RequestHandler = async (req, res) => {
   }
 };
 
-export default clearPasswordController;
+export default ClearPasswordController;

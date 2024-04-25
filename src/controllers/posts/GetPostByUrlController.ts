@@ -3,7 +3,7 @@ import PostModel from "../../models/Posts/PostModel";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 
-const getPostByUrlController: RequestHandler = async (req, res) => {
+const GetPostByUrlController: RequestHandler = async (req, res) => {
   const postUrl = req.params.url;
 
   try {
@@ -19,4 +19,4 @@ const getPostByUrlController: RequestHandler = async (req, res) => {
   }
 };
 
-export default getPostByUrlController;
+export default GetPostByUrlController;

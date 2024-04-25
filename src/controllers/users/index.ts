@@ -1,21 +1,21 @@
-import createUserController from "./createUser.controller";
-import deleteUserController from "./deleteUser.controller";
-import getUserByIdController from "./getUserById.controller";
-import getAllUsersController from "./getAllUsers.controller";
-import updateUserController from "./updateUser.controller";
-import deleteUserForAdminController from "./deleteUserForAdmin.controller";
-import createModeratorController from "./createModerator.controller";
-import clearPasswordController from "./clearPassword.controller";
-import getAdminController from "./getAdmin.controller";
+import ClearPasswordController from "./ClearPasswordController";
+import CreateModeratorController from "./CreateModeratorController";
+import CreateUserController from "./CreateUserController";
+import DeleteUserController from "./DeleteUserController";
+import DeleteUserForAdminController from "./DeleteUserForAdminController";
+import GetAdminController from "./GetAdminController";
+import GetAllUsersController from "./GetAllUsersController";
+import GetUserByIdController from "./GetUserByIdController";
+import UpdateUserController from "./UpdateUserController";
 
 export {
-  createUserController,
-  createModeratorController,
-  deleteUserController,
-  deleteUserForAdminController,
-  getUserByIdController,
-  getAllUsersController,
-  updateUserController,
-  clearPasswordController,
-  getAdminController,
+  ClearPasswordController,
+  CreateModeratorController,
+  CreateUserController,
+  DeleteUserController,
+  DeleteUserForAdminController,
+  GetAdminController,
+  GetAllUsersController,
+  GetUserByIdController,
+  UpdateUserController,
 };

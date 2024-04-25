@@ -3,7 +3,7 @@ import PostModel from "../../models/Posts/PostModel";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 
-const getAllPostAdminController: RequestHandler = async (req, res) => {
+const GetAllPostAdminController: RequestHandler = async (req, res) => {
   try {
     const posts = await PostModel.paginate(
       {},
@@ -23,4 +23,4 @@ const getAllPostAdminController: RequestHandler = async (req, res) => {
   }
 };
 
-export default getAllPostAdminController;
+export default GetAllPostAdminController;

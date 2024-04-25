@@ -5,7 +5,7 @@ import { TEXT } from "../../utils/JoiErrors";
 import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 import { postValidationSchema, validateStatusFields } from "../../utils/validation";
 
-const createPostController: RequestHandler = async (req, res) => {
+const CreatePostController: RequestHandler = async (req, res) => {
   if (await validateStatusFields(postValidationSchema, req.body, res)) return;
   try {
     const textForUrl = req.body.url
@@ -32,4 +32,4 @@ const createPostController: RequestHandler = async (req, res) => {
   }
 };
 
-export default createPostController;
+export default CreatePostController;

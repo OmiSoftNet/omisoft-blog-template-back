@@ -3,7 +3,7 @@ import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 import PostModel from "../../models/Posts/PostModel";
 import ResponseService from "../../utils/ResponseService";
 
-const getAllPostUrlController: RequestHandler = async (req, res) => {
+const GetAllPostsUrlController: RequestHandler = async (req, res) => {
   try {
     const posts = await PostModel.find({ status: STATUS_TYPES_ENUM.PUBLISHED }, { __v: false });
     const postsUrls = posts.map((post) => {
@@ -16,4 +16,4 @@ const getAllPostUrlController: RequestHandler = async (req, res) => {
   }
 };
 
-export default getAllPostUrlController;
+export default GetAllPostsUrlController;

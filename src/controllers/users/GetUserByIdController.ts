@@ -3,7 +3,7 @@ import { RequestHandler } from "express";
 import ResponseService from "../../utils/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 
-const getUserByIdController: RequestHandler = async (req, res) => {
+const GetUserByIdController: RequestHandler = async (req, res) => {
   const userId = req.params.id;
 
   try {
@@ -26,4 +26,4 @@ const getUserByIdController: RequestHandler = async (req, res) => {
   }
 };
 
-export default getUserByIdController;
+export default GetUserByIdController;

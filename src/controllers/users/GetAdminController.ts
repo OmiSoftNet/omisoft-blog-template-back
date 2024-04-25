@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import UserModel from "../../models/Users/UserModel";
 import ResponseService from "../../utils/ResponseService";
 
-const getAdminController: RequestHandler = async (req, res) => {
+const GetAdminController: RequestHandler = async (req, res) => {
   try {
     const response = await UserModel.findOne(
       { role: "ADMIN" },
@@ -19,4 +19,4 @@ const getAdminController: RequestHandler = async (req, res) => {
     ResponseService.error(res, error.message);
   }
 };
-export default getAdminController;
+export default GetAdminController;

@@ -5,7 +5,7 @@ import { TEXT } from "../../utils/JoiErrors";
 import ResponseService from "../../utils/ResponseService";
 import { validateStatusFields, postValidationSchema, publishValidationSchema } from "../../utils/validation";
 
-const updatePostByIdController: RequestHandler = async (req, res) => {
+const UpdatePostByIdController: RequestHandler = async (req, res) => {
   const postId = req.params.id;
   try {
     const post = await PostModel.findById(postId);
@@ -35,4 +35,4 @@ const updatePostByIdController: RequestHandler = async (req, res) => {
     });
   }
 };
-export default updatePostByIdController;
+export default UpdatePostByIdController;
