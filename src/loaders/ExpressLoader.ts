@@ -14,7 +14,7 @@ export default function loadServer() {
 
   app.use(corsMiddleware);
   app.use(express.json());
-  app.use(authVerifyMiddleware);
+  // app.use(authVerifyMiddleware);
 
   if (isDevEnv()) {
     app.use(morgan("tiny"));

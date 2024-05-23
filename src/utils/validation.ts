@@ -4,8 +4,8 @@ import ResponseService from "./ResponseService";
 import { JOI_ERRORS, TEXT } from "./JoiErrors";
 
 export const URL_REGEX = /^[a-z0-9_-]+$/;
-export const PASSWORD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\x21-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E])[A-Za-z\d\x21-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E]{8,}$/;
+// Minimum eight characters, at least one letter, one number and one special character:
+export const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 export const JOI = Joi.defaults((schema) => schema.messages(JOI_ERRORS));
 export const publishValidationSchema = JOI.object({

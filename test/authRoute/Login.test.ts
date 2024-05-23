@@ -3,8 +3,8 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { connectMockDatabase, disconnectMockDatabase } from "../utils/MockMongoLoader";
 import decodeAccessToken from "../utils/JwtTokenHelper";
 import { loginWithEmail, registerWithEmail } from "../api/AuthApis";
-// import { getPoints } from "../api/PointsApis";
 import { USER_EMAIL, USER_PASSWORD } from "../api/UserCredentials";
+import { getMyProfile } from "../api/UsersApis";
 
 /**
  * Login User Tests
@@ -128,17 +128,20 @@ describe("Run Login Tests", () => {
     expect(decodedToken).toHaveProperty("iat");
     expect(expirationTime).toBeGreaterThan(Date.now());
 
-    // Test getPoints with valid token
-    // const getPointsResponse1 = await getPoints(accessToken);
-    // expect(getPointsResponse1.statusCode).toBe(200);
-    // expect(getPointsResponse1.body).toHaveProperty("points");
-    // expect(getPointsResponse1.body.points).toBe(0);
+    // Test getMyProfile with valid token
+    const getMyProfileResponse1 = await getMyProfile(accessToken);
+    expect(getMyProfileResponse1.statusCode).toBe(200);
+    expect(getMyProfileResponse1.body).toHaveProperty("_id");
+    expect(getMyProfileResponse1.body).toHaveProperty("email");
+    expect(getMyProfileResponse1.body.email).toBe(USER_EMAIL);
+    expect(getMyProfileResponse1.body).toHaveProperty("createdAt");
+    expect(getMyProfileResponse1.body).toHaveProperty("updatedAt");
 
     jest.spyOn(Date, "now").mockImplementationOnce(() => expirationTime);
 
-    // Test getPoints with invalid token
-    // const getPointsResponse2 = await getPoints(accessToken);
-    // expect(getPointsResponse2.statusCode).toBe(401);
-    // expect(getPointsResponse2.body.error).toBe("The token has expired");
+    // Test getMyProfile with invalid token
+    const getMyProfileResponse2 = await getMyProfile(accessToken);
+    expect(getMyProfileResponse2.statusCode).toBe(401);
+    expect(getMyProfileResponse2.body.error).toBe("The user is not authorized");
   });
 });
