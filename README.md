@@ -1,8 +1,8 @@
 <img src="./images/cover.png" alt="OMISOFT BLOG EXAMPLE - BACK END" width="800">
 
-![npm](https://img.shields.io/static/v1?label=npm&message=8.9.0&color=orange)
-![node.js](https://img.shields.io/static/v1?label=node.js&message=18.2.0&color=<COLOR>)
-![typescript](https://img.shields.io/static/v1?label=typescript.js&message=4.6.3&color=blue)
+![npm](https://img.shields.io/static/v1?label=npm&message=9&color=orange)
+![node.js](https://img.shields.io/static/v1?label=node.js&message=18&color=<COLOR>)
+![typescript](https://img.shields.io/static/v1?label=typescript.js&message=5&color=blue)
 
 # OMISOFT BLOG EXAMPLE - BACK END
 
