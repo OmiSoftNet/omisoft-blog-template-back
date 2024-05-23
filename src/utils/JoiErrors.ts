@@ -3,7 +3,7 @@ export const TEXT = {
     requiredField: (requiredValue: string) => `Field "${requiredValue}" is required`,
 
     notFound: "Not found",
-    unauthorized: "Unauthorized",
+    unauthorized: "The user is not authorized",
     userDoesntExists: "User not found",
     somethingWentWrong: "Something went wrong",
     incorrectEmailFormat: "Wrong email format",

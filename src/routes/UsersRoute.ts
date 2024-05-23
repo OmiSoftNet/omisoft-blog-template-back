@@ -8,10 +8,12 @@ import {
   DeleteUserForAdminController,
   GetAdminController,
   GetAllUsersController,
+  GetMyProfileController,
   GetUserByIdController,
   UpdateUserController,
 } from "../controllers/users";
 import { adminVerifyMiddleware } from "../middleware/RoleVerifyMiddleware";
+import authVerifyMiddleware from "../middleware/AuthVerifyMiddleware";
 
 export default () => {
   const route = Router();
@@ -23,6 +25,7 @@ export default () => {
   route.delete(API_ROUTES.USERS.DELETE_FOR_ADMIN, adminVerifyMiddleware, DeleteUserForAdminController);
   route.get(API_ROUTES.USERS.GET_ADMIN, GetAdminController);
   route.get(API_ROUTES.USERS.ALL_USERS, GetAllUsersController);
+  route.get(API_ROUTES.USERS.GET_MY_PROFILE, authVerifyMiddleware, GetMyProfileController);
   route.get(API_ROUTES.USERS.USER_BY_ID, GetUserByIdController);
   route.put(API_ROUTES.USERS.UPDATE_USER, UpdateUserController);
 

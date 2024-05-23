@@ -5,6 +5,7 @@ import DeleteUserController from "./DeleteUserController";
 import DeleteUserForAdminController from "./DeleteUserForAdminController";
 import GetAdminController from "./GetAdminController";
 import GetAllUsersController from "./GetAllUsersController";
+import GetMyProfileController from "./GetMyProfileController";
 import GetUserByIdController from "./GetUserByIdController";
 import UpdateUserController from "./UpdateUserController";
 
@@ -16,6 +17,7 @@ export {
   DeleteUserForAdminController,
   GetAdminController,
   GetAllUsersController,
+  GetMyProfileController,
   GetUserByIdController,
   UpdateUserController,
 };

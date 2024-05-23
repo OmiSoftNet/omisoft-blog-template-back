@@ -19,6 +19,7 @@ export const API_ROUTES = {
     GET_ADMIN: `${BASE_URL}users/admin/`,
     UPDATE_USER: `${BASE_URL}users/:id/`,
     CLEAR_PASSWORD: `${BASE_URL}users/reset/`,
+    GET_MY_PROFILE: `${BASE_URL}users/my-profile/`,
   },
   POSTS: {
     CREATE: `${BASE_URL}posts/create/`,
