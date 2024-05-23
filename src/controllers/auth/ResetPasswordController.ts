@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import Joi from "joi";
 import UserModel from "../../models/Users/UserModel";
 import { TEXT } from "../../utils/JoiErrors";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
 
 const validationSchema = JOI.object({
@@ -10,23 +10,23 @@ const validationSchema = JOI.object({
   password: Joi.string().strict().pattern(PASSWORD_REGEX).required(),
 });
 
-const ResetPasswordController: RequestHandler = async (req, res) => {
+const ResetPasswordController: RequestHandler = async (req, res, next) => {
   const { password, email } = req.body;
 
-  if (await validateFields(validationSchema, req, res)) return;
+  if (await validateFields(validationSchema, req, res, next)) return;
 
   try {
     const user = await UserModel.findOne({ email: email });
 
     if (!user) {
-      return ResponseService.error(res, TEXT.ERRORS.wrongOldPassword);
+      return ResponseService.error(next, TEXT.ERRORS.wrongOldPassword);
     }
 
     user.setPassword(password);
     await user.save();
     res.status(201).end();
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
   }
 };
 

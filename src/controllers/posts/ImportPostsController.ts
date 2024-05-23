@@ -1,13 +1,13 @@
 import { RequestHandler } from "express";
 import path from "path";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import PostModel from "../../models/Posts/PostModel";
 
 const fs = require("fs");
 const util = require("util");
 const unlinkFile = util.promisify(fs.unlink);
 
-const ImportPostsController: RequestHandler = async (req, res) => {
+const ImportPostsController: RequestHandler = async (req, res, next) => {
   try {
     if (!req.file) {
       return;
@@ -27,7 +27,7 @@ const ImportPostsController: RequestHandler = async (req, res) => {
 
     ResponseService.success(res, posts);
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
   }
 };
 

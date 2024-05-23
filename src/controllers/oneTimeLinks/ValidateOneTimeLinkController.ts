@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import OneTimeLinksModel from "../../models/OneTimeLinks/OneTimeLinkModel";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import validateFields, { JOI } from "../../utils/validation";
 import Joi from "joi";
@@ -13,8 +13,8 @@ const validationSchema = JOI.object({
   token: Joi.string().strict().required(),
 });
 
-const ValidateOneTimeLinkController: RequestHandler<RequestData> = async (req, res) => {
-  if (await validateFields(validationSchema, req, res)) {
+const ValidateOneTimeLinkController: RequestHandler<RequestData> = async (req, res, next) => {
+  if (await validateFields(validationSchema, req, res, next)) {
     return;
   }
 
@@ -26,7 +26,7 @@ const ValidateOneTimeLinkController: RequestHandler<RequestData> = async (req, r
     });
 
     if (!oneTimeLink) {
-      return ResponseService.error(res, TEXT.ERRORS.notFound);
+      return ResponseService.error(next, TEXT.ERRORS.notFound);
     }
 
     await OneTimeLinksModel.findOneAndDelete({
@@ -35,7 +35,7 @@ const ValidateOneTimeLinkController: RequestHandler<RequestData> = async (req, r
 
     ResponseService.success(res, oneTimeLink);
   } catch (err: any) {
-    ResponseService.error(res, err.message);
+    ResponseService.error(next, err.message);
   }
 };
 

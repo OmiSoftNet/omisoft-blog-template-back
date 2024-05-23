@@ -1,12 +1,12 @@
 import { RequestHandler } from "express";
 import PostModel from "../../models/Posts/PostModel";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 import { postValidationSchema, validateStatusFields } from "../../utils/validation";
 
-const CreatePostController: RequestHandler = async (req, res) => {
-  if (await validateStatusFields(postValidationSchema, req.body, res)) return;
+const CreatePostController: RequestHandler = async (req, res, next) => {
+  if (await validateStatusFields(postValidationSchema, req.body, res, next)) return;
   try {
     const textForUrl = req.body.url
       ? req.body.url.toLowerCase().replace(/ /g, "-")
@@ -15,7 +15,7 @@ const CreatePostController: RequestHandler = async (req, res) => {
       url: textForUrl,
     });
     if (existingPost) {
-      return ResponseService.error(res, TEXT.ERRORS.postExists);
+      return ResponseService.error(next, TEXT.ERRORS.postExists);
     }
     const newPost = await PostModel.create({
       ...req.body,

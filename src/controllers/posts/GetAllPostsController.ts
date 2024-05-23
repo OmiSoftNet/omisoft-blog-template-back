@@ -1,10 +1,10 @@
 import { RequestHandler } from "express";
 import PostModel from "../../models/Posts/PostModel";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 
-const GetAllPostsController: RequestHandler = async (req, res) => {
+const GetAllPostsController: RequestHandler = async (req, res, next) => {
   const queryStatus = req.query.status;
 
   let searchParams: { status?: string } = {
@@ -27,11 +27,11 @@ const GetAllPostsController: RequestHandler = async (req, res) => {
       }
     );
     if (!posts) {
-      return ResponseService.error(res, TEXT.ERRORS.postDoesntExists);
+      return ResponseService.error(next, TEXT.ERRORS.postDoesntExists);
     }
     ResponseService.success(res, posts);
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
   }
 };
 

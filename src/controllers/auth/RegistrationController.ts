@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import Joi from "joi";
 import UserModel from "../../models/Users/UserModel";
 import { TEXT } from "../../utils/JoiErrors";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import validateFields, { JOI, PASSWORD_REGEX } from "../../utils/validation";
 import { USER_ROLES } from "../../constants/UserRolesEnum";
 
@@ -11,15 +11,15 @@ const validationSchema = JOI.object({
   password: Joi.string().strict().pattern(PASSWORD_REGEX).required(),
 });
 
-const RegistrationController: RequestHandler = async (req, res) => {
-  if (await validateFields(validationSchema, req, res)) return;
+const RegistrationController: RequestHandler = async (req, res, next) => {
+  if (await validateFields(validationSchema, req, res, next)) return;
 
   try {
     const existingUser = await UserModel.findOne({
       email: req.body.email.toLowerCase(),
     });
     if (existingUser) {
-      return ResponseService.error(res, TEXT.ERRORS.somethingWentWrong);
+      return ResponseService.error(next, TEXT.ERRORS.somethingWentWrong);
     }
 
     const newUser = await UserModel.create({
@@ -43,7 +43,7 @@ const RegistrationController: RequestHandler = async (req, res) => {
       refreshToken,
     });
   } catch (err: any) {
-    ResponseService.error(res, err.message);
+    ResponseService.error(next, err.message);
   }
 };
 

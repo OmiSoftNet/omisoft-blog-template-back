@@ -17,6 +17,7 @@ export const TEXT = {
     wrongTypeUrl: "Url should contain only small latin letters, numbers, hyphens and underscores",
     duplicateTitle: "Post with the same title already exists",
     methodNotAllowed: "Method Not Allowed",
+    noRoute: "Resource not Found",
   },
 };
 export const JOI_ERRORS = {

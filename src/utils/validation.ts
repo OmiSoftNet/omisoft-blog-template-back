@@ -1,6 +1,6 @@
 import Joi from "joi";
-import { Request, Response } from "express";
-import ResponseService from "./ResponseService";
+import { NextFunction, Request, Response } from "express";
+import ResponseService from "../services/ResponseService";
 import { JOI_ERRORS, TEXT } from "./JoiErrors";
 
 export const URL_REGEX = /^[a-z0-9_-]+$/;
@@ -36,22 +36,27 @@ export const postValidationSchema = JOI.object({
   similarArticles: Joi.array().max(3),
 });
 
-const validateFields = async (schema: Joi.ObjectSchema<any>, req: Request, res: Response) => {
+const validateFields = async (schema: Joi.ObjectSchema<any>, req: Request, res: Response, next: NextFunction) => {
   try {
     await schema.validateAsync(req.body);
     return false;
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
     return true;
   }
 };
 
-export const validateStatusFields = async (schema: Joi.ObjectSchema<any>, body: any, res: Response) => {
+export const validateStatusFields = async (
+  schema: Joi.ObjectSchema<any>,
+  body: any,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     await schema.validateAsync(body);
     return false;
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
     return true;
   }
 };

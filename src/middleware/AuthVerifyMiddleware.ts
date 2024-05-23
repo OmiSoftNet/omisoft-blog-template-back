@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import ResponseService from "../utils/ResponseService";
+import ResponseService from "../services/ResponseService";
 import CONFIG from "../config";
 import { TEXT } from "../utils/JoiErrors";
 import { UserRequest } from "../../test/utils/UserRequest";
@@ -29,7 +29,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
     const parsedToken = req.headers.authorization?.split(" ")[1] ?? "";
     if (!parsedToken) {
-      return ResponseService.error(res, TEXT.ERRORS.unauthorized, 401);
+      return ResponseService.error(next, TEXT.ERRORS.unauthorized, 401);
     }
 
     const { _id, role } = jwt.verify(parsedToken, CONFIG.JWT_SECRET) as JwtPayload;
@@ -38,6 +38,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
     next();
   } catch (error) {
-    return ResponseService.error(res, TEXT.ERRORS.unauthorized, 401);
+    return ResponseService.error(next, TEXT.ERRORS.unauthorized, 401);
   }
 };

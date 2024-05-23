@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import UserModel from "../../models/Users/UserModel";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import validateFields, { JOI } from "../../utils/validation";
 import Joi from "joi";
 import { TEXT } from "../../utils/JoiErrors";
@@ -10,8 +10,8 @@ const validationSchema = JOI.object({
   password: Joi.string().strict().required(),
 });
 
-const LoginController: RequestHandler = async (req, res) => {
-  if (await validateFields(validationSchema, req, res)) return;
+const LoginController: RequestHandler = async (req, res, next) => {
+  if (await validateFields(validationSchema, req, res, next)) return;
 
   try {
     const user = await UserModel.findOne({
@@ -19,7 +19,7 @@ const LoginController: RequestHandler = async (req, res) => {
     });
 
     if (!user || !user.validatePassword(req.body.password))
-      return ResponseService.error(res, TEXT.ERRORS.wrongCredentials, 401);
+      return ResponseService.error(next, TEXT.ERRORS.wrongCredentials, 401);
 
     const accessToken = user.generateAccessToken();
     const refreshToken = await user.generateRefreshToken();
@@ -37,7 +37,7 @@ const LoginController: RequestHandler = async (req, res) => {
       refreshToken,
     });
   } catch (err: any) {
-    ResponseService.error(res, err.message);
+    ResponseService.error(next, err.message);
   }
 };
 

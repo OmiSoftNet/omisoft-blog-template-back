@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
 import UserModel from "../../models/Users/UserModel";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 
-const GetAllUsersController: RequestHandler = async (req, res) => {
+const GetAllUsersController: RequestHandler = async (req, res, next) => {
   try {
     const users = await UserModel.paginate(
       {},
@@ -15,7 +15,7 @@ const GetAllUsersController: RequestHandler = async (req, res) => {
 
     ResponseService.success(res, users);
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
   }
 };
 export default GetAllUsersController;

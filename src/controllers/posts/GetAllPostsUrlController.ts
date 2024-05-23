@@ -1,9 +1,9 @@
 import { RequestHandler } from "express";
 import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 import PostModel from "../../models/Posts/PostModel";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 
-const GetAllPostsUrlController: RequestHandler = async (req, res) => {
+const GetAllPostsUrlController: RequestHandler = async (req, res, next) => {
   try {
     const posts = await PostModel.find({ status: STATUS_TYPES_ENUM.PUBLISHED }, { __v: false });
     const postsUrls = posts.map((post) => {
@@ -12,7 +12,7 @@ const GetAllPostsUrlController: RequestHandler = async (req, res) => {
 
     ResponseService.success(res, postsUrls);
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
   }
 };
 

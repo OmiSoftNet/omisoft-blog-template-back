@@ -6,7 +6,7 @@ import { TOKEN_CONFIG } from "../../config/JwtConfig";
 import RefreshToken from "../../models/RefreshToken/RefreshTokenModel";
 import UserModel from "../../models/Users/UserModel";
 
-const UpdateTokensController: RequestHandler = async (req, res) => {
+const UpdateTokensController: RequestHandler = async (req, res, next) => {
   const { refreshToken } = req.body;
   try {
     const decoded: any = jwt.verify(refreshToken, CONFIG.JWT_SECRET);

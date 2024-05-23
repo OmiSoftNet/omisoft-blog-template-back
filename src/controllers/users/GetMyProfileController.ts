@@ -1,17 +1,17 @@
 import UserModel from "../../models/Users/UserModel";
 import { RequestHandler } from "express";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import { UserRequest } from "../../../test/utils/UserRequest";
 
-const GetMyProfileController: RequestHandler = async (req, res) => {
+const GetMyProfileController: RequestHandler = async (req, res, next) => {
   const userId = (req as UserRequest).userId;
 
   try {
     const user = await UserModel.findById(userId);
 
     if (!user) {
-      return ResponseService.error(res, TEXT.ERRORS.userDoesntExists);
+      return ResponseService.error(next, TEXT.ERRORS.userDoesntExists);
     }
 
     const { _id, email, createdAt, updatedAt } = user.toObject();
@@ -23,7 +23,7 @@ const GetMyProfileController: RequestHandler = async (req, res) => {
       updatedAt,
     });
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
   }
 };
 

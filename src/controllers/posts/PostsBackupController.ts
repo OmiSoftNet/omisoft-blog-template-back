@@ -1,10 +1,10 @@
 import { RequestHandler } from "express";
 import PostModel from "../../models/Posts/PostModel";
-import ResponseService from "../../utils/ResponseService";
+import ResponseService from "../../services/ResponseService";
 import { TEXT } from "../../utils/JoiErrors";
 import { STATUS_TYPES_ENUM } from "../../constants/PostStatusEnum";
 
-const PostsBackupController: RequestHandler = async (req, res) => {
+const PostsBackupController: RequestHandler = async (req, res, next) => {
   const queryStatus = req.query.status;
   const sort = req.query.sort;
 
@@ -28,7 +28,7 @@ const PostsBackupController: RequestHandler = async (req, res) => {
       }
     );
     if (!posts) {
-      return ResponseService.error(res, TEXT.ERRORS.postDoesntExists);
+      return ResponseService.error(next, TEXT.ERRORS.postDoesntExists);
     }
 
     const today = new Date();
@@ -40,7 +40,7 @@ const PostsBackupController: RequestHandler = async (req, res) => {
     res.attachment(`Posts - ${dd}.${mm}.${yyyy}.json`);
     res.send(posts.docs);
   } catch (error: any) {
-    ResponseService.error(res, error.message);
+    ResponseService.error(next, error.message);
   }
 };
 
