@@ -1,6 +1,6 @@
-import mongooseLoader from "./src/loaders/mongoose.loader";
+import mongooseLoader from "./src/loaders/MongooseLoader";
+import loadServer from "./src/loaders/ExpressLoader";
 import CONFIG from "./src/config";
-import loadServer from "./src/loaders/express.loader";
 
 const port = CONFIG.PORT;
 

@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "BluePrints",
-    "description": "Tests for QA and tech developers"
+    "description": "API Documentation"
   },
   "consumes": ["application/json"],
   "produces": ["application/json"],
@@ -15,9 +15,6 @@
   "tags": [
     {
       "name": "Auth"
-    },
-    {
-      "name": "Emails"
     },
     {
       "name": "Posts"
@@ -163,77 +160,7 @@
         }
       }
     },
-    "/email/": {
-      "get": {
-        "tags": ["Emails"],
-        "summary": "Get list of emails",
-        "description": "Get list of emails",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Pagination limit",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Next page",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/definitions/Emails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
 
-    "/email/create/": {
-      "post": {
-        "tags": ["Emails"],
-        "summary": "Create email",
-        "requestBody": {
-          "description": "Create email",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["email"],
-                "properties": {
-                  "email": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/definitions/Email"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/users/": {
       "get": {
         "tags": ["Users"],
@@ -881,44 +808,6 @@
           },
           "updatedAt": {
             "type": "string"
-          }
-        }
-      },
-      "Emails": {
-        "type": "object",
-        "properties": {
-          "docs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/definitions/Email"
-            }
-          },
-          "totalDocs": {
-            "type": "number"
-          },
-          "limit": {
-            "type": "number"
-          },
-          "totalPages": {
-            "type": "number"
-          },
-          "page": {
-            "type": "number"
-          },
-          "pagingCounter": {
-            "type": "number"
-          },
-          "hasPrevPage": {
-            "type": "boolean"
-          },
-          "hasNextPage": {
-            "type": "boolean"
-          },
-          "prevPage": {
-            "type": "number"
-          },
-          "nextPage": {
-            "type": "number"
           }
         }
       },

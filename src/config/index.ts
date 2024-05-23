@@ -12,6 +12,7 @@ const CONFIG = {
 
   NODEMAILER_EMAIL: process.env.NODEMAILER_EMAIL ?? "",
   NODEMAILER_IMAP_PASSWORD: process.env.NODEMAILER_IMAP_PASSWORD ?? "",
+  CLIENT_URL: process.env.CLIENT_URL ?? "http://localhost:3000",
 };
 
 export default CONFIG;

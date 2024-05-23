@@ -19,6 +19,7 @@ export const API_ROUTES = {
     GET_ADMIN: `${BASE_URL}users/admin/`,
     UPDATE_USER: `${BASE_URL}users/:id/`,
     CLEAR_PASSWORD: `${BASE_URL}users/reset/`,
+    GET_MY_PROFILE: `${BASE_URL}users/my-profile/`,
   },
   POSTS: {
     CREATE: `${BASE_URL}posts/create/`,
@@ -32,15 +33,11 @@ export const API_ROUTES = {
     UPDATE_POST: `${BASE_URL}posts/update/:id/`,
     BACKUP: `${BASE_URL}posts/backup/`,
   },
-  EMAILS: {
-    CREATE: `${BASE_URL}blog/email/create/`,
-    ALL_EMAILS: `${BASE_URL}email/`,
-  },
   SERVICES: {
     SWAGGER: `${BASE_URL}swagger/`,
   },
   ONE_TIME_LINKS: {
     GENERATE: `${BASE_URL}one-time-link/generate/`,
-    VALIDATE: `${BASE_URL}one-time-link/validate/`
+    VALIDATE: `${BASE_URL}one-time-link/validate/`,
   },
 };

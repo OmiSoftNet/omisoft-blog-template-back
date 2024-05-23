@@ -29,6 +29,21 @@ Finally, you can open next url-s:
 - [http://localhost:5050](http://localhost:5050) with your browser to see the result.
 - [http://localhost:5050/swagger](http://localhost:5050/swagger) with your browser to see Swagger documentation.
 
+## Unit & Integration Tests
+
+To run all tests run next command:
+
+```bash
+npm run test
+```
+
+To run some concrete tests, run the command:
+
+```bash
+// Replace Login.test.ts with the file you need
+npm run test -- Login.test.ts
+```
+
 ## Project Structure
 
 This blog consists of three different parts:
